@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="registry_view_form" model="ir.ui.view">
+        <field name="name">registry.view.form</field>
+        <field name="model">motorcycle.registry</field>
+        <field name="arch" type="xml">
+            <form string="Registry View" >
+                <header>
+                </header>
+                <sheet>
+                    <h1><field name="registry_number"/><field name="picture" widget="image" class="oe_avatar"/></h1>
+                    <group>
+                        <group>
+                            <separator string="Motorcycle Information"/>
+                            <field name="register_date" string="Registration Date" help="The registration date"/>
+                            <field name="vin" string="VIN" help="The vehicle identification number "/>
+                            <field name="brand"/>
+                            <field name="model"/>
+                            <field name="year"/>
+                            <field name="current_mileage" string="Current Mileage" help="The actual current mileage"/>
+                            <field name="license_plate" string="License Plate Number" help="The license plate number"/>
+                        </group>
+                        
+                        <group>
+                            <separator string="Owner Information"/>
+                            <field name="partner_id" string="Owner" help="The Owner contact"/>
+                            <field name="email" help="The E-mail contact"/>
+                            <field name="phone" help="The phone contact"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Related Documents">
+                            <group>
+                                <field name="certificate_title" string="Certificate Title"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="registry_view_list" model="ir.ui.view">
+        <field name="name">registry.view.list</field>
+        <field name="model">motorcycle.registry</field>
+        <field name="arch" type="xml">
+            <tree string="Registred Motorcycles">
+                <field name="registry_number" string="Registry Number"/>
+                <field name="vin" string="VIN"/>
+                <field name="brand"/>
+                <field name="model"/>
+                <field name="year"/>
+                <field name="license_plate" string="License Plate Number"/>
+                <field name="partner_id" string="Owner"/>
+                <field name="current_mileage" string="Current Mileage" optional="hide"/>
+                <field name="certificate_title" string="Certificate Title" optional="hide"/>
+                <field name="register_date" string="Register Date" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="registry_view_search" model="ir.ui.view">
+        <field name="name">registry.view.search</field>
+        <field name="model">motorcycle.registry</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="registry_number"/>
+                <field name="vin"/>
+                <field name="license_plate" string="License Plate Number"/>
+                <filter name="groupby_date" string="Register Date" context="{'group_by':'register_date'}"/>
+            </search>
+        </field>
+    </record>
+</odoo>
